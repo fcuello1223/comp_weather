@@ -20,6 +20,10 @@ export const unixToTime = (unix: number, timezone: number) => {
     .format("HH:mm");
 };
 
+export const unixToDay = (unix: number) => {
+  return moment.unix(unix).format("dd");
+};
+
 export const formatNumber = (num: number) => {
   if (num >= 1000000) {
     return (num / 1000000).toFixed(1) + "M";
@@ -28,7 +32,7 @@ export const formatNumber = (num: number) => {
   } else {
     return num;
   }
-}
+};
 
 export const aqiText = [
   {

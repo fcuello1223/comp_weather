@@ -13,6 +13,7 @@ import Pressure from "./components/main/Pressure";
 import Mapbox from "./components/other/Mapbox";
 import defaultStates from "./utils/defaultCities";
 import Image from "next/image";
+import FiveDayForecast from "./components/main/FiveDayForecast";
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <div className="pb-4 flex flex-col gap-4 md:flex-row">
         <div className="flex flex-col gap-4 w-full min-w-[18rem] md:w-[35rem]">
           <Temperature />
+          <FiveDayForecast />
         </div>
         <div className="flex flex-col w-full">
           <div className="instruments grid h-full gap-4 col-span-full sm-2:col-span-2 lg:grid-cols-3 xl:grid-cols-4">
