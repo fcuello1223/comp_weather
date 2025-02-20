@@ -1,35 +1,115 @@
-import React from "react";
+// import React, { useState, useEffect } from "react";
+// import { useGlobalContext } from "@/app/context/globalContext";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { commandIcon } from "../../utils/icons";
-import { Command, CommandInput } from "@/components/ui/command";
+// function SearchDialog() {
+//   const { geocodedList, inputVal, handleInput } = useGlobalContext();
+//   const [hoveredIndex, setHoveredIndex] = useState(0);
+//   const [isOpen, setIsOpen] = useState(false);
+
+//   // Debugging
+//   useEffect(() => {
+//     console.log("🔍 SearchDialog - geocodedList updated:", geocodedList);
+//   }, [geocodedList]);
+
+//   const safeGeocodedList = Array.isArray(geocodedList) ? geocodedList : [];
+
+//   return (
+//     <div className="relative w-full max-w-md mx-auto">
+//       {/* Search Bar */}
+//       <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg p-2 bg-white dark:bg-gray-900">
+//         <input
+//           type="text"
+//           value={inputVal}
+//           onChange={handleInput}
+//           onFocus={() => setIsOpen(true)}
+//           onBlur={() => setTimeout(() => setIsOpen(false), 200)} // Close dropdown after clicking outside
+//           placeholder="Search for a city..."
+//           className="w-full p-2 outline-none bg-transparent text-gray-900 dark:text-white"
+//         />
+//         <span className="ml-2 text-gray-500 dark:text-gray-400">🔍</span>
+//       </div>
+
+//       {/* Dropdown Suggestions */}
+//       {isOpen && safeGeocodedList.length > 0 && (
+//         <ul className="absolute left-0 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg mt-1 shadow-lg max-h-60 overflow-auto">
+//           <li className="px-4 py-2 text-sm text-gray-500 dark:text-gray-400">
+//             Suggestions
+//           </li>
+//           {safeGeocodedList.map((item, index) => (
+//             <li
+//               key={index}
+//               className={`px-4 py-2 text-gray-900 dark:text-white cursor-pointer ${
+//                 hoveredIndex === index ? "bg-gray-200 dark:bg-gray-700" : ""
+//               }`}
+//               onMouseEnter={() => setHoveredIndex(index)}
+//             >
+//               {item.name}, {item.state && `${item.state},`} {item.country}
+//             </li>
+//           ))}
+//         </ul>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default SearchDialog;
+
+import React, { useState, useEffect } from "react";
+import {
+  useGlobalContext,
+  useGlobalContextUpdate,
+} from "@/app/context/globalContext";
 
 function SearchDialog() {
+  const { geocodedList, inputVal, handleInput } = useGlobalContext();
+  const { setActiveCityCoords } = useGlobalContextUpdate();
+
+  const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const safeGeocodedList = Array.isArray(geocodedList) ? geocodedList : [];
+
+  const getClickedCoords = (lat: number, lon: number) => {
+    setActiveCityCoords([lat, lon]);
+  };
+
   return (
-    <div className="search-btn ">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            className="border inline-flex items-center justify-center text-sm font-medium hover:dark:bg-[#131313] hover:bg-slate-100  ease-in-out duration-200"
-          >
-            <p className="text-sm text-muted-foreground">Search Here...</p>
-            <div className="command dark:bg-[#262626] bg-slate-200  py-[2px] pl-[5px] pr-[7px] rounded-sm ml-[10rem] flex items-center gap-2">
-              {commandIcon}
-              <span className="text-[9px]">F</span>
-            </div>
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="p-0">
-          <Command className="rounded-lg border shadow-md ">
-            <CommandInput placeholder="Type A Command Or Search..." />
-            <ul className="px-3 pb-2 ">
-              <p className="p-2 text-sm text-muted-foreground">Suggestions</p>
-            </ul>
-          </Command>
-        </DialogContent>
-      </Dialog>
+    <div className="relative">
+      {/* Search Bar - Matching Button Height */}
+      <div className="flex items-center border border-gray-300 dark:border-gray-700 rounded-lg p-2 bg-white dark:bg-gray-900 h-10">
+        <input
+          type="text"
+          value={inputVal}
+          onChange={handleInput}
+          onFocus={() => setIsOpen(true)}
+          onBlur={() => setTimeout(() => setIsOpen(false), 200)} // Close dropdown after clicking outside
+          placeholder="Search for a city..."
+          className="w-full px-3 py-1 outline-none bg-transparent text-gray-900 dark:text-white h-full leading-none"
+        />
+      </div>
+
+      {/* Dropdown Suggestions */}
+      {isOpen && safeGeocodedList.length > 0 && (
+        <ul className="absolute left-0 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg mt-1 shadow-lg max-h-60 overflow-auto">
+          <li className="px-4 py-2 text-sm text-gray-500 dark:text-gray-400">
+            Suggestions
+          </li>
+          {safeGeocodedList.map((item, index) => (
+            <li
+              key={index}
+              className={`px-4 py-2 text-gray-900 dark:text-white cursor-pointer ${
+                hoveredIndex === index ? "bg-gray-200 dark:bg-gray-700" : ""
+              }`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onClick={() => {
+                getClickedCoords(item.lat, item.lon);
+              }}
+            >
+              {item.name}, {item.state && `${item.state},`} {item.country}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

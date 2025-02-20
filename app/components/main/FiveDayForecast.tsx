@@ -7,8 +7,8 @@ import { calender } from "@/app/utils/icons";
 import {
   kelvinToFahrenheit,
   unixToDay,
-  unixToTime,
 } from "@/app/utils/miscellaneous";
+import TemperatureBar from "../other/TemperatureBar";
 
 function FiveDayForecast() {
   const { fiveDayForecast } = useGlobalContext();
@@ -73,7 +73,7 @@ function FiveDayForecast() {
                 </p>
                 <div className="flex-1 flex items-center justify-between gap-4">
                   <p className="font-bold">{forecast.minTemp}°F</p>
-                  <div className="temperature flex-1 w-full h-2 rounded-lg"></div>
+                  <TemperatureBar low={forecast.minTemp} high={forecast.maxTemp} />
                   <p className="font-bold">{forecast.maxTemp}°F</p>
                 </div>
               </div>

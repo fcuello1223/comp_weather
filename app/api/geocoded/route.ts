@@ -7,16 +7,16 @@ export async function GET(req: NextRequest) {
 
     const searchParams = req.nextUrl.searchParams;
 
-    const lat = searchParams.get('lat');
-    const lon = searchParams.get("lon");
+    const city = searchParams.get('search');
 
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${apiKey}`;
 
     const response = await axios.get(url);
 
     return NextResponse.json(response.data);
+
   } catch (error) {
-    console.log("Error Fetching Forecast Data");
-    return new Response("Error Fetching Forecast Data", { status: 500 });
+    console.log("Error Fetching Geocoded Data");
+    return new Response("Error Fetching Geocoded Data", { status: 500 });
   }
 }
