@@ -76,6 +76,24 @@ body {
   );
 }
 
-/* .temperature {
-  background-image: linear-gradient(to right, midnightblue 0%, blue 20%, skyblue 40%, white 50%, yellow 60%, orange 80%, red);
-} */
+@media screen and (max-width: 580px) {
+  .search-container {
+    width: 100%;
+  }
+  .search-button {
+    width: 100%;
+  }
+  .search-button button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:1010px) {
+  .mapbox-container {
+    flex-direction: column;
+  }
+  .mapbox-container > div:first-child {
+    height: 24rem;
+    flex: initial;
+  }
+}

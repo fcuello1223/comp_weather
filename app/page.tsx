@@ -40,9 +40,6 @@ export default function Home() {
           <div className="mapbox-container mt-4 flex gap-4">
             <Mapbox />
             <div className="flex flex-col gap-3 flex-1">
-              <h2 className="flex items-center gap-2 font-medium">
-                Top Large Cities
-              </h2>
               <div className="flex flex-col gap-4">
                 {defaultStates.map((state, index) => {
                   return (

@@ -2,8 +2,6 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import { github } from "../../utils/icons";
 import ThemeDropdown from "./ThemeDropdown";
 import SearchDialog from "./SearchDialog";
 
@@ -17,12 +15,6 @@ function Navbar() {
         <SearchDialog />
         <div className="btn-group flex items-center gap-2">
           <ThemeDropdown />
-          <Button
-            className="source-code flex items-center gap-2"
-            onClick={() => router.push("https://www.github.com")}
-          >
-            {github} Source Code
-          </Button>
         </div>
       </div>
     </div>
