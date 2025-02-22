@@ -11,7 +11,6 @@ import Humidity from "./components/main/Humidity";
 import Visibility from "./components/main/Visibility";
 import Pressure from "./components/main/Pressure";
 import Mapbox from "./components/other/Mapbox";
-import defaultStates from "./utils/defaultCities";
 import Image from "next/image";
 import FiveDayForecast from "./components/main/FiveDayForecast";
 
