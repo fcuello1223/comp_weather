@@ -9,11 +9,18 @@ function Navbar() {
   const router = useRouter();
 
   return (
-    <div className="w-full py-4 flex items-center justify-between">
-      <div className="left"></div>
-      <div className="search-container flex shrink-0 w-full gap-2 sm:w-fit">
-        <SearchDialog />
-        <div className="btn-group flex items-center gap-2">
+    <div className="w-full h-[4rem] fixed top-0 left-0 bg-white dark:bg-gray-900 shadow-md z-50 px-6 flex items-center">
+      <div className="w-full max-w-6xl mx-auto flex items-center justify-between">
+        {/* Left spacer for alignment balance */}
+        <div className="flex-1"></div>
+
+        {/* Search Bar: Centered */}
+        <div className="flex-1 flex justify-center">
+          <SearchDialog />
+        </div>
+
+        {/* Theme Dropdown: Fully at the right edge */}
+        <div className="flex-1 flex justify-end pr-6">
           <ThemeDropdown />
         </div>
       </div>

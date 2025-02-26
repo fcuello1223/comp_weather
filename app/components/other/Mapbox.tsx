@@ -46,7 +46,7 @@ function Mapbox() {
         zoom={13}
         scrollWheelZoom={false}
         style={{ height: "calc(100% - 2rem)", width: "calc(100% - 2rem)" }}
-        className="rounded-lg m-4"
+        className="rounded-lg m-4 relative z-[1]"
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

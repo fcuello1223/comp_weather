@@ -47,11 +47,10 @@ function Temperature() {
     }
   };
 
-  //Live Time Update
   useEffect(() => {
     const interval = setInterval(() => {
       const localMoment = moment().utcOffset(timezone / 60);
-      const formattedTime = localMoment.format("HH:mm:ss");
+      const formattedTime = localMoment.format("h:mm:ss A");
       const day = localMoment.format("dddd");
       setLocalTime(formattedTime);
       setCurrentDay(day);
