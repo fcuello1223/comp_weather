@@ -44,11 +44,10 @@ export default function Home() {
       <footer className="flex justify-center pb-8 py-4">
         <p className="footer-text text-sm flex items-center gap-1">
           Made By
-          <Image src={"/logo-white.svg"} alt="logo" width={20} height={20} />
           <a
             href="http://www.github.com/fcuello1223"
             target="_blank"
-            className="text-green-300 font-bold"
+            className="text-cyan-500 font-bold"
           >
             Francisco J. Cuello
           </a>
